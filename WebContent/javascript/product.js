@@ -1,19 +1,20 @@
   
+   
  
- 
-// 검색버튼클릭시
+  
 $(document).on('click', '.btn-search' , () => {
 	fncGetList(1); 
 });
-
-// 테이블클릭시 
-$(document).on('click','.user-id' , (e) => {
+ 
+$(document).on('click','.prod-id' , (e) => {
 	
-	const userId =$(e.target).text();
-	const url = "/user/json/getUser/"+userId;	
+	const info = JSON.parse( $(e.target).next('input').val() );
+	
+	const url = "/product/json/getProduct/"+info.prodNo+"/"+info.menu;	
 	 
 	_ajax.getAsyncData(url).success(  ( JSONData ) =>{
 		 
+		console.log(JSONData);
 		let strUser = "<h3>아이디 : "+JSONData.userId+"<br/>"
 		+"이름 : "+JSONData.userName+"<br/>"
 		+"이메일 : "+JSONData.email+"<br/>"
@@ -27,13 +28,6 @@ $(document).on('click','.user-id' , (e) => {
 	 
 });
 
+
  
  
-
-
-//검색
-function fncGetList(currentPage) {
-	$("#currentPage").val(currentPage);
-	$("form").attr("method" , "POST").attr("action" , "/user/listUser").submit();
-}
- 	

@@ -15,14 +15,19 @@ $(document).on('click','.prod-id' , (e) => {
 	_ajax.getAsyncData(url).success(  ( JSONData ) =>{
 		 
 		console.log(JSONData);
-		let strUser = "<h3>아이디 : "+JSONData.userId+"<br/>"
-		+"이름 : "+JSONData.userName+"<br/>"
-		+"이메일 : "+JSONData.email+"<br/>"
-		+"role : "+JSONData.role+"<br/>"
-		+"regDate : "+JSONData.regDate+"<br/></h3>";
-		
+		let strUser = 
+			"<h3>"
+			+"상품이미지 : "+JSONData.imgFile+"<br/>"
+			+"제조일  : "+JSONData.manuDay+"<br/>"
+			+"가격  : "+JSONData.price+"<br/>"
+			+"상세정보 : "+JSONData.prodDetail+"<br/></h3>"
+			+"상품명  : "+JSONData.prodName+"<br/></h3>"
+			+"상품 번호  : "+JSONData.prodNo+"<br/></h3>"
+			+"등록일  : "+JSONData.regDate+"<br/></h3>"
+			+"상태  : "+JSONData.prodTranCode+"<br/></h3>"; 
+	  
 		$('h3').remove();
-		$(e.target).parent().next().children().append(strUser); 
+		$(e.target).parent().parent().next().children().append(strUser); 
 		
 	});
 	 
